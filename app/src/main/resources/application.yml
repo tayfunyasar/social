@@ -1,0 +1,12 @@
+spring:
+  r2dbc:
+    url: r2dbc:pool:postgresql://localhost:5433/social
+    username: docker
+    password: docker
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          r2dbc: DEBUG
