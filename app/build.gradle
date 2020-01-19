@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.2.2.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
+	id "org.flywaydb.flyway" version "6.1.4"
 }
 
 group = 'com.social'
@@ -25,14 +26,21 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot.experimental:spring-boot-starter-data-r2dbc'
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	// reactive dependencies
+	implementation('org.springframework.boot:spring-boot-starter-webflux')
+	implementation 'org.springframework.data:spring-data-r2dbc'
 	implementation 'io.r2dbc:r2dbc-postgresql'
 
+	// migration dependencies
+	implementation "org.flywaydb:flyway-core"
+	implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.1'
+
+	// development dependencies
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 
+	// test dependencies
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
@@ -48,4 +56,11 @@ dependencyManagement {
 
 test {
 	useJUnitPlatform()
+}
+
+// We can also migrate using gradle
+flyway {
+	url = 'jdbc:postgresql://localhost:5433/social'
+	user = 'docker'
+	password ='docker'
 }
