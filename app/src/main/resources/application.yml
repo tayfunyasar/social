@@ -1,12 +1,17 @@
 spring:
   r2dbc:
     url: r2dbc:pool:postgresql://localhost:5433/social
+    database: social
     username: docker
     password: docker
+    host: localhost
+    port: 5433
 
 logging:
   level:
+    ROOT: INFO
     org:
+      flyway: DEBUG
       springframework:
-        data:
-          r2dbc: DEBUG
+        data: DEBUG
+    com.social: DEBUG

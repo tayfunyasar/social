@@ -7,8 +7,8 @@ plugins {
 
 group = 'com.social'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '13'
-targetCompatibility = '13'
+sourceCompatibility = '12'
+targetCompatibility = '12'
 
 configurations {
 	developmentOnly
@@ -34,6 +34,7 @@ dependencies {
 	// migration dependencies
 	implementation "org.flywaydb:flyway-core"
 	implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.1'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.1.2.RELEASE'
 
 	// development dependencies
 	compileOnly 'org.projectlombok:lombok'

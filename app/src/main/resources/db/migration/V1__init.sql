@@ -1,3 +1,3 @@
-CREATE TABLE foo (
+CREATE TABLE "user_account" (
 id SERIAL,
-bar varchar);
+name varchar);

@@ -1,4 +1,3 @@
-
-INSERT INTO public.foo
-(bar)
-VALUES( 'aaa');
+INSERT INTO public.user_account
+(name)
+VALUES( 'tayfun');
