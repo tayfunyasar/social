@@ -1,67 +1,42 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.2.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
-	id "org.flywaydb.flyway" version "6.1.4"
+	id 'org.springframework.boot' version '3.3.0-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.1.4'
 }
 
 group = 'com.social'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '12'
-targetCompatibility = '12'
 
-configurations {
-	developmentOnly
-	runtimeClasspath {
-		extendsFrom developmentOnly
-	}
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+java {
+	sourceCompatibility = '21'
 }
 
 repositories {
 	mavenCentral()
 	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
 }
 
 dependencies {
-	// reactive dependencies
-	implementation('org.springframework.boot:spring-boot-starter-webflux')
-	implementation 'org.springframework.data:spring-data-r2dbc'
-	implementation 'io.r2dbc:r2dbc-postgresql'
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	// migration dependencies
-	implementation "org.flywaydb:flyway-core"
-	implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.1'
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.1.2.RELEASE'
+	// dev
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-	// development dependencies
+	// test
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// database
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.postgresql:postgresql'
+
+	// lombok
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
-
-	// test dependencies
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
-	testImplementation 'org.springframework.boot.experimental:spring-boot-test-autoconfigure-r2dbc'
-	testImplementation 'io.projectreactor:reactor-test'
 }
 
-dependencyManagement {
-	imports {
-		mavenBom 'org.springframework.boot.experimental:spring-boot-bom-r2dbc:0.1.0.M3'
-	}
-}
-
-test {
+tasks.named('test') {
 	useJUnitPlatform()
-}
-
-// We can also migrate using gradle
-flyway {
-	url = 'jdbc:postgresql://localhost:5433/social'
-	user = 'docker'
-	password ='docker'
 }

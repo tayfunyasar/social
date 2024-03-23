@@ -1,7 +1,7 @@
 version: "3"
 services:
   database:
-    build: ./postgres
+    build: postgres
     image: "social-database"
     restart: always
     volumes:
