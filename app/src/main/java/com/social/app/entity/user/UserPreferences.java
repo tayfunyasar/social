@@ -1,7 +1,7 @@
 package com.social.app.entity.user;
 
 import com.social.app.entity.AbstractEntity;
-import com.social.app.entity.UserEntity;
+import com.social.app.entity.User;
 import com.social.app.enums.GenderEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -11,11 +11,11 @@ import lombok.Data;
 
 @Data
 @Entity
-public class UserPreferencesEntity extends AbstractEntity {
+public class UserPreferences extends AbstractEntity {
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    private UserEntity user;
+    private User user;
 
     private int minAge;
     private int maxAge;

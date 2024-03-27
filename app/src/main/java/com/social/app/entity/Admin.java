@@ -7,9 +7,9 @@ import lombok.Data;
 
 @Data
 @Entity
-public class AdminEntity extends AbstractEntity {
+public class Admin extends AbstractEntity {
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    private UserEntity user;
+    private User user;
 }

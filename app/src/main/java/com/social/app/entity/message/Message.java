@@ -1,7 +1,7 @@
 package com.social.app.entity.message;
 
 import com.social.app.entity.AbstractEntity;
-import com.social.app.entity.UserEntity;
+import com.social.app.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -9,13 +9,13 @@ import lombok.Data;
 
 @Data
 @Entity
-public class MessageEntity extends AbstractEntity {
+public class Message extends AbstractEntity {
 
     @ManyToOne
-    private UserEntity from;
+    private User from;
 
     @ManyToOne
-    private UserEntity to;
+    private User to;
 
     @Column(columnDefinition = "text", updatable = false)
     private String content;

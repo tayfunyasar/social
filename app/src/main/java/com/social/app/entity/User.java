@@ -1,16 +1,13 @@
 package com.social.app.entity;
 
-import com.social.app.entity.user.UserActivityDateEntity;
-import com.social.app.entity.user.UserDataEntity;
+import com.social.app.entity.user.UserActivityDate;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import java.util.List;
 import lombok.Data;
 
 @Data
-@Entity
-public class UserEntity extends AbstractEntity {
+@Entity(name = "users")
+public class User extends AbstractEntity {
 
     private String firstName;
     private String lastName;
@@ -26,10 +23,11 @@ public class UserEntity extends AbstractEntity {
     private boolean confirmed = false;
     private boolean disabled = false;
 
-    @OneToMany
-    private List<UserDataEntity> profilePicture;
-
     @OneToOne
-    private UserActivityDateEntity activityDate;
+    private UserActivityDate activityDate;
+
+    public String getProfilePicture() {
+        
+    }
 }
 

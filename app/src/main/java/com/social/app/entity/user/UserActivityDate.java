@@ -1,7 +1,7 @@
 package com.social.app.entity.user;
 
 import com.social.app.entity.AbstractEntity;
-import com.social.app.entity.UserEntity;
+import com.social.app.entity.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import java.time.LocalDateTime;
@@ -9,13 +9,13 @@ import lombok.Data;
 
 @Data
 @Entity
-public class UserActivityDateEntity extends AbstractEntity {
+public class UserActivityDate extends AbstractEntity {
 
     @OneToOne
-    private UserEntity user;
+    private User user;
 
     private LocalDateTime birthDate;
-    
+
     private LocalDateTime loginDate;
     private LocalDateTime intentionChangeDate;
     private LocalDateTime notificationDate;
