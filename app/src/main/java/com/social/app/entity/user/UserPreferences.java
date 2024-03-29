@@ -3,6 +3,7 @@ package com.social.app.entity.user;
 import com.social.app.entity.AbstractEntity;
 import com.social.app.entity.User;
 import com.social.app.enums.GenderEnum;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -20,9 +21,10 @@ public class UserPreferences extends AbstractEntity {
     private int minAge;
     private int maxAge;
 
+    @ElementCollection
     @Enumerated(EnumType.STRING)
     private Set<GenderEnum> genders;
-    
+
     private double lat;
     private double lng;
     private int distance;

@@ -6,9 +6,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import java.time.LocalDateTime;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Entity
+@EqualsAndHashCode(callSuper = false)
 public class UserActivityDate extends AbstractEntity {
 
     @OneToOne
