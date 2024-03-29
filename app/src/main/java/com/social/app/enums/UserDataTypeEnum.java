@@ -6,3 +6,4 @@ public enum UserDataTypeEnum {
     PROFILE_PICTURE,
     GALLERY
 }
+

@@ -15,7 +15,6 @@ public class User extends AbstractEntity {
 
     private String phone;
     private int countProfileViews;
-    private int countProfileSearch;
 
     private String biography;
     private String languageCode;
@@ -26,8 +25,5 @@ public class User extends AbstractEntity {
     @OneToOne
     private UserActivityDate activityDate;
 
-    public String getProfilePicture() {
-        
-    }
 }
 
