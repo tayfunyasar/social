@@ -1,17 +1,22 @@
 spring:
-  r2dbc:
-    url: r2dbc:pool:postgresql://localhost:5433/social
-    database: social
+  datasource:
+    url: jdbc:postgresql://localhost:5531/social
     username: docker
     password: docker
-    host: localhost
-    port: 5433
+    hikari:
+      minimum-idle: 1
+  
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
 
 logging:
   level:
     ROOT: INFO
     org:
-      flyway: DEBUG
       springframework:
         data: DEBUG
     com.social: DEBUG
+
