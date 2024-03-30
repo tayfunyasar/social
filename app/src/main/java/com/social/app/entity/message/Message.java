@@ -5,6 +5,7 @@ import com.social.app.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
@@ -19,4 +20,6 @@ public class Message extends AbstractEntity {
 
     @Column(columnDefinition = "text", updatable = false)
     private String content;
+
+    private LocalDateTime lastSeenDate;
 }

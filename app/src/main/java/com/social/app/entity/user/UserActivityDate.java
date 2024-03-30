@@ -16,13 +16,9 @@ public class UserActivityDate extends AbstractEntity {
     @OneToOne
     private User user;
 
-    private LocalDateTime birthDate;
-
     private LocalDateTime loginDate;
-    private LocalDateTime intentionChangeDate;
     private LocalDateTime notificationDate;
-    private LocalDateTime notificationCheckedDate;
+    private LocalDateTime notificationSeenDate;
     private LocalDateTime messageDate;
-    private LocalDateTime messageCheckedDate;
-    private LocalDateTime latestDonationDate;
+    private LocalDateTime messageSeenDate;
 }

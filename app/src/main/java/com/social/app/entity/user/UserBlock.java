@@ -13,8 +13,8 @@ import lombok.EqualsAndHashCode;
 public class UserBlock extends AbstractEntity {
 
     @ManyToOne
-    private User from;
+    private User fromUser;
 
     @ManyToOne
-    private User to;
+    private User toUser;
 }

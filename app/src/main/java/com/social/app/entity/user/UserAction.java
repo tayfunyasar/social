@@ -16,10 +16,10 @@ import lombok.EqualsAndHashCode;
 public class UserAction extends AbstractEntity {
 
     @ManyToOne
-    private User from;
+    private User fromUser;
 
     @ManyToOne
-    private User to;
+    private User toUser;
 
     @Enumerated(EnumType.STRING)
     private UserActionTypeEnum type;

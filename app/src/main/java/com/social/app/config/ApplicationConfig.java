@@ -1,10 +1,8 @@
 package com.social.app.config;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@Configuration
-@EnableJpaRepositories
+@EnableJpaRepositories("com.social.app.repository")
 public class ApplicationConfig {
 
 }

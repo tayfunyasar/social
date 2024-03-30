@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5531/social
+    url: jdbc:postgresql://{DBHOSTNAME:localhost}:5531/social
     username: docker
     password: docker
     hikari:
@@ -10,7 +10,7 @@ spring:
     open-in-view: false
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     properties:
       hibernate:
         format_sql: true
@@ -18,7 +18,7 @@ spring:
 
 logging:
   level:
-    ROOT: INFO
+    ROOT: DEBUG
     org:
       springframework:
         data: DEBUG
