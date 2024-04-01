@@ -64,8 +64,9 @@ public class User extends AbstractEntity implements UserDetails {
     private String biography;
     private String languageCode;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
-    private RoleEnum role;
+    private RoleEnum role = RoleEnum.MEMBER;
     @Enumerated(EnumType.STRING)
     private GenderEnum gender;
     @Enumerated(EnumType.STRING)
