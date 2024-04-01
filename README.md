@@ -10,4 +10,5 @@ cd ../app
 Completed:
 
 * Login and Register using Spring Security
+* Entity Auditing
 * 

@@ -24,10 +24,15 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+@Audited
 @Getter
+@Setter
 @Builder
 @Entity(name = "users")
 @NoArgsConstructor(force = true)
@@ -35,24 +40,31 @@ import org.springframework.security.core.userdetails.UserDetails;
 @EqualsAndHashCode(callSuper = false)
 public class User extends AbstractEntity implements UserDetails {
 
+    @NotAudited
     @OneToMany(mappedBy = "fromUser", cascade = CascadeType.ALL)
     private final Set<UserAction> fromActions = new HashSet<>();
 
+    @NotAudited
     @OneToMany(mappedBy = "toUser", cascade = CascadeType.ALL)
     private final Set<UserAction> toActions = new HashSet<>();
 
+    @NotAudited
     @OneToOne(mappedBy = "user")
     private final UserActivityDate activityDate;
 
+    @NotAudited
     @OneToMany(mappedBy = "fromUser", cascade = CascadeType.ALL)
     private final Set<UserBlock> fromBlocks = new HashSet<>();
 
+    @NotAudited
     @OneToMany(mappedBy = "toUser", cascade = CascadeType.ALL)
     private final Set<UserBlock> toBlocks = new HashSet<>();
 
+    @NotAudited
     @OneToMany(mappedBy = "user")
     private final Set<UserData> datas = new HashSet<>();
 
+    @NotAudited
     @OneToOne(mappedBy = "user")
     private final UserPreferences preferences;
 
