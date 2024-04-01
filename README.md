@@ -2,15 +2,12 @@
 
 All contributions are welcome.
 
-
-Get Started
-
 cd docker
-
 sh run.sh &
-
-cd ..
-
-cd app
-
+cd ../app
 ./gradlew clean bootRun
+
+Completed:
+
+* Login and Register using Spring Security
+* 
