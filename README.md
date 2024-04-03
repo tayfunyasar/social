@@ -11,4 +11,8 @@ Completed:
 
 * Login and Register using Spring Security
 * Entity Auditing
-* 
+*
+
+Todo:
+
+* Throwing exception com.social.app.config.JpaConfig.getCurrentAuditor

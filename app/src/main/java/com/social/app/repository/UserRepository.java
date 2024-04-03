@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long>, RevisionRepository<User, Long, Long> {
 
-    Optional<User> findByPhone(String phone);
+    Optional<User> findFirstByPhone(String phone);
 }

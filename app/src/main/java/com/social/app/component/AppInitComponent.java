@@ -1,6 +1,6 @@
 package com.social.app.component;
 
-import com.social.app.controller.UserController;
+import com.social.app.controller.GuestController;
 import com.social.app.entity.User;
 import com.social.app.repository.UserRepository;
 import com.social.app.request.UserLoginRequest;
@@ -14,17 +14,17 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class AppInitComponent {
 
-    private final UserController userController;
+    private final GuestController guestController;
     private final UserRepository userRepository;
 
     @EventListener(ApplicationReadyEvent.class)
     public void doSomethingAfterStartup() {
 
-        if (userRepository.findByPhone("1").isEmpty()) {
+        if (userRepository.findFirstByPhone("1").isEmpty()) {
 
-            userController.register(UserLoginRequest.builder().phone("1").password("1").build());
+            guestController.register(UserLoginRequest.builder().phone("1").password("1").build());
 
-            Optional<User> byPhone = userRepository.findByPhone("1");
+            Optional<User> byPhone = userRepository.findFirstByPhone("1");
             User user = byPhone.orElseThrow();
             user.setBiography("2");
             userRepository.save(user);
