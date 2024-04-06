@@ -9,11 +9,11 @@ services:
     ports:
       - "5431:5432"
     environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=docker
-      - POSTGRES_DB=social
+      - POSTGRES_USER=social_username
+      - POSTGRES_PASSWORD=social_password
+      - POSTGRES_DB=social_database
     networks:
-      - social
+      - social_network
 
 networks:
-  social:
+  social_network:

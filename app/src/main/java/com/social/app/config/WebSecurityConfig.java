@@ -54,11 +54,6 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public WebSecurityCustomizer debugSecurity() {
-        return web -> web.debug(true);
-    }
-
-    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
