@@ -1,13 +1,13 @@
 version: "3"
 services:
   database:
-    build: postgres
+    build: postgres:latest
     image: "social-database"
     restart: always
     volumes:
       - ~/social-data:/var/lib/postgresql/data
     ports:
-      - "5433:5432"
+      - "5431:5432"
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
