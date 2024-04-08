@@ -1,14 +1,15 @@
 package com.social.app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.social.app.entity.chat.Message;
 import com.social.app.entity.user.UserAction;
 import com.social.app.entity.user.UserActivityDate;
 import com.social.app.entity.user.UserBlock;
-import com.social.app.entity.user.UserData;
+import com.social.app.entity.user.UserMedia;
 import com.social.app.entity.user.UserPreferences;
 import com.social.app.enums.GenderEnum;
 import com.social.app.enums.MBTIEnum;
 import com.social.app.enums.RoleEnum;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -18,7 +19,9 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -41,11 +44,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class User extends AbstractEntity implements UserDetails {
 
     @NotAudited
-    @OneToMany(mappedBy = "fromUser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "fromUser")
     private final Set<UserAction> fromActions = new HashSet<>();
 
     @NotAudited
-    @OneToMany(mappedBy = "toUser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "toUser")
     private final Set<UserAction> toActions = new HashSet<>();
 
     @NotAudited
@@ -53,20 +56,27 @@ public class User extends AbstractEntity implements UserDetails {
     private final UserActivityDate activityDate;
 
     @NotAudited
-    @OneToMany(mappedBy = "fromUser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "fromUser")
     private final Set<UserBlock> fromBlocks = new HashSet<>();
 
+    @JsonIgnore
     @NotAudited
-    @OneToMany(mappedBy = "toUser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "toUser")
     private final Set<UserBlock> toBlocks = new HashSet<>();
 
+    @JsonIgnore
     @NotAudited
     @OneToMany(mappedBy = "user")
-    private final Set<UserData> datas = new HashSet<>();
+    private final Set<UserMedia> mediaList = new HashSet<>();
 
     @NotAudited
     @OneToOne(mappedBy = "user")
     private final UserPreferences preferences;
+
+    @JsonIgnore
+    @NotAudited
+    @OneToMany(mappedBy = "fromUser")
+    private List<Message> messageList;
 
     private String firstName;
     private String lastName;
@@ -79,14 +89,24 @@ public class User extends AbstractEntity implements UserDetails {
     @Builder.Default
     @Enumerated(EnumType.STRING)
     private RoleEnum role = RoleEnum.MEMBER;
+
     @Enumerated(EnumType.STRING)
     private GenderEnum gender;
+
     @Enumerated(EnumType.STRING)
     private MBTIEnum mbti;
 
     private int countProfileViews;
     private boolean confirmed = false;
     private boolean enabled = false;
+
+    public Optional<UserMedia> getProfilePicture() {
+        return this.getMediaList().stream().findFirst();
+    }
+
+    public List<UserMedia> getUserMedias() {
+        return this.getMediaList().stream().filter(media -> !media.equals(getProfilePicture())).collect(Collectors.toList());
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

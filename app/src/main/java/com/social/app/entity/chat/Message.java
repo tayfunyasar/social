@@ -1,4 +1,4 @@
-package com.social.app.entity.message;
+package com.social.app.entity.chat;
 
 import com.social.app.entity.AbstractEntity;
 import com.social.app.entity.User;
@@ -13,10 +13,10 @@ import lombok.Data;
 public class Message extends AbstractEntity {
 
     @ManyToOne
-    private User from;
+    private User fromUser;
 
     @ManyToOne
-    private User to;
+    private User toUser;
 
     @Column(columnDefinition = "text", updatable = false)
     private String content;

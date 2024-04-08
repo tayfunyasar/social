@@ -4,7 +4,6 @@ import com.social.app.controller.GuestController;
 import com.social.app.entity.User;
 import com.social.app.repository.UserRepository;
 import com.social.app.request.UserLoginRequest;
-import java.util.Optional;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -24,10 +23,10 @@ public class AppInitComponent {
 
             guestController.register(UserLoginRequest.builder().phone("1").password("1").build());
 
-            Optional<User> byPhone = userRepository.findFirstByPhone("1");
-            User user = byPhone.orElseThrow();
-            user.setBiography("2");
-            userRepository.save(user);
+            User byPhone = userRepository.findFirstByPhone("1").orElseThrow();
+            byPhone.setBiography("2");
+            userRepository.save(byPhone);
         }
     }
+
 }

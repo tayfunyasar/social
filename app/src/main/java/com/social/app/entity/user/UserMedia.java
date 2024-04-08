@@ -13,11 +13,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.envers.Audited;
 
+@Audited
 @Data
 @Entity
 @EqualsAndHashCode(callSuper = false)
-public class UserData extends AbstractEntity {
+public class UserMedia extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +29,7 @@ public class UserData extends AbstractEntity {
     private User user;
 
     @Column(columnDefinition = "text")
-    private String data;
+    private String content;
 
     @Enumerated(EnumType.STRING)
     private UserDataTypeEnum type;

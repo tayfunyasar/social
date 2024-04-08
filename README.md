@@ -10,9 +10,15 @@ cd ../app
 Completed:
 
 * Login and Register using Spring Security
-* Entity Auditing
+* Entity Auditing by CreatedBy and ModifiedBy
 *
 
-Todo:
+Todo ASAP:
 
-* Throwing exception com.social.app.config.JpaConfig.getCurrentAuditor
+* Messages
+* Websocket and Messages
+
+Todo v2:
+
+* ChatRooms
+  ** ChatRoom Roles / Admin, Moderator
